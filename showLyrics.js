@@ -1,5 +1,6 @@
 let artist = "Taylor Swift"
 let song = "You Belong With Me"
+const HalfTransitionTime = 500/2
 
 const backgroundColors = [
     "#FFCCCC",
@@ -127,24 +128,36 @@ let lyrics = [
 
 const lyricsContainer = document.querySelector(".lyrics-container");
 const lyricsSlider = document.querySelector(".lyricsSlider");
+const leftNav = document.querySelector('.leftNav')
+const rightNav = document.querySelector('.rightNav')
 let lyricsPointer = 0;
 
 showlyric(getLyric());
 changeBackgroundColor()
 
 function changeBackgroundColor() {
-    document.body.style.background = `linear-gradient(${Math.random()}turn, ${backgroundColors[Math.floor(Math.random() * backgroundColors.length)]}, ${backgroundColors[Math.floor(Math.random() * backgroundColors.length)]})`
+    document.body.style.background = `linear-gradient(${Math.random() * 0.2 - 0.1}turn, ${backgroundColors[Math.floor(Math.random() * backgroundColors.length)]}, ${backgroundColors[Math.floor(Math.random() * backgroundColors.length)]})`
 }
 
 function changeStanza() {
-  changeBackgroundColor();
+  setTimeout(() => {
+    changeBackgroundColor();
+  }, HalfTransitionTime);
+ 
 }
 
 function getLyric() {
   return lyrics[lyricsPointer];
 }
+
+
 function showlyric(text) {
-  lyricsSlider.innerHTML = text;
+  lyricsSlider.style.opacity = "0"
+  setTimeout(() => {
+    lyricsSlider.textContent = text;
+   lyricsSlider.style.opacity = "1"
+  }, HalfTransitionTime);
+  
 }
 
 function checkStanza(direction) {
@@ -183,3 +196,11 @@ document.onkeydown = function (event) {
       break;
   }
 };
+
+rightNav.addEventListener('touchstart', () => {
+    next()
+})
+
+leftNav.addEventListener('touchstart', () => {
+  prev()
+})
