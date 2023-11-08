@@ -12,13 +12,10 @@ body {
     width: 100vw;
 }
 
-
-
-
 .lyrics-container{
     font-family: 'Poppins', sans-serif;
     position: absolute;
-    width: 100vw;
+    width: 100;
     height: 300px;
     top: 0;
     bottom: 0;
@@ -46,10 +43,10 @@ body {
     padding-right: 5vw;
 }
 
-.touch-controls{
 
+.touch-controls{
     height: 100%;
-    background-color: rgba(255, 0, 0, 0.055);
+    background-color: transparent;
     position: absolute;
 }
 
